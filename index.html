@@ -161,7 +161,7 @@
         });
 
         window.Telegram.WebApp.CloudStorage.getItem("nameInput", (err, nameInput) => {
-            if (err || !accessToken) {
+            if (err || !nameInput) {
                 // in edge cases you can fetch tokens from your backend
                 console.log("name not found in cloud storage")
                 return;
@@ -178,7 +178,7 @@
             var name = document.getElementById('name-input').value;
             window.Telegram.WebApp.CloudStorage.setItem("nameInput", name);
             window.Telegram.WebApp.CloudStorage.getItem("nameInput", (err, nameInput) => {
-                if (err || !accessToken) {
+                if (err || !nameInput) {
                     // in edge cases you can fetch tokens from your backend
                     console.log("name not found in cloud storage")
                     return;
