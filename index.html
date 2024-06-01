@@ -160,19 +160,18 @@
             document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
         });
 
-        window.Telegram.WebApp.CloudStorage.getItem("nameInput", (err, nameInput) => {
-            if (err || !accessToken) {
-                // in edge cases you can fetch tokens from your backend
-                console.log("name not found in cloud storage")
-            }
-            document.getElementById('name-section').innerText = 'Hello, ' + nameInput + '!';
-        });
+
 
         function displayUserName() {
             var name = document.getElementById('name-input').value;
             window.Telegram.WebApp.CloudStorage.setItem("nameInput", name);
-
-            document.getElementById('name-section').innerText = 'Hello, ' + name + '!';
+            window.Telegram.WebApp.CloudStorage.getItem("nameInput", (err, nameInput) => {
+                if (err || !accessToken) {
+                    // in edge cases you can fetch tokens from your backend
+                    console.log("name not found in cloud storage")
+                }
+                document.getElementById('name-section').innerText = 'Hello, ' + nameInput + '!';
+            });
         }
 
     </script>
