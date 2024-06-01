@@ -159,8 +159,19 @@
         Telegram.WebApp.onEvent('themeChanged', function() {
             document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
         });
+        
         function displayUserName() {
-            var name = document.getElementById('name-input').value;
+            var name = ""
+            name = document.getElementById('name-input').value;
+            window.Telegram.WebApp.CloudStorage.setItem("nameInput", name);
+            window.Telegram.WebApp.CloudStorage.getItem("nameInput", (err, nameInput) => {
+                if (err || !accessToken) {
+                    // in edge cases you can fetch tokens from your backend
+                    console.log("name not found in cloud storage")
+                }
+            
+                name = accessToken
+            });
             document.getElementById('name-section').innerText = 'Hello, ' + name + '!';
         }
 
