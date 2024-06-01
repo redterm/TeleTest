@@ -67,6 +67,13 @@
         <div align="center">
             <a href="https://ton.org/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
         </div>
+        <div class="input-container">
+            <label for="name-input">Enter your name:</label>
+            <input type="text" id="name-input" oninput="displayUserName()">
+        </div>
+        <section id="name-section">
+            <!-- Name will be displayed here -->
+        </section>
         <h1>Modals</h1>
         <button onclick="Telegram.WebApp.showAlert('Hello World!');">Launch Alert</button>
         <button onclick="showPopup();">Launch Popup</button>
@@ -152,6 +159,10 @@
         Telegram.WebApp.onEvent('themeChanged', function() {
             document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
         });
+        function displayUserName() {
+            var name = document.getElementById('name-input').value;
+            document.getElementById('name-section').innerText = 'Hello, ' + name + '!';
+        }
 
     </script>
 
