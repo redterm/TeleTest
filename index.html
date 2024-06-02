@@ -159,11 +159,32 @@
 
         var totalCoins = 0;
 
+        window.Telegram.WebApp.CloudStorage.getItem("totalCoins", (err, cloudTotalCoins) => {
+            if (err || !cloudTotalCoins) {
+                // in edge cases you can fetch tokens from your backend
+                console.log("totalCoins not found in cloud storage")
+                document.getElementById('name-section').innerText = 'Your Coins:, ' + '0' + '!';
+                return;
+            }
+            totalCoins = cloudTotalCoins
+            document.getElementById('name-section').innerText = 'Your Coins:, ' + cloudTotalCoins + '!';
+            console.log("totalCoins  found in cloud storage")
+            return;
+
+        });
+
+
         function coinIncrement() {            
             totalCoins += 1;
             document.getElementById('name-section').innerText = 'Your Coins: ' + totalCoins + '!';
         }
         
+        function updateCloudStorage() {
+            window.Telegram.WebApp.CloudStorage.setItem("totalCoins", totalCoins.toString());
+        }
+        
+        // Call updateCloudStorage every 2 seconds
+        setInterval(updateCloudStorage, 2000);
         
     </script>
 
