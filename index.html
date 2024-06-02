@@ -112,9 +112,7 @@
         Telegram.WebApp.MainButton.setParams({
             text: 'Main Button'
         });
-        Telegram.WebApp.MainButton.onClick(function () {
-            Telegram.WebApp.showAlert('Main Button was clicked')
-        });	
+        Telegram.WebApp.MainButton.onClick(coinIncrement());	
         Telegram.WebApp.MainButton.show();
 
         // Function to call showPopup API
@@ -160,34 +158,38 @@
             document.body.setAttribute('style', '--bg-color:' + Telegram.WebApp.backgroundColor);
         });
 
-        window.Telegram.WebApp.CloudStorage.getItem("nameInput", (err, nameInput) => {
-            if (err || !nameInput) {
+        window.Telegram.WebApp.CloudStorage.getItem("totalCoins", (err, totalCoins) => {
+            if (err || !totalCoins) {
                 // in edge cases you can fetch tokens from your backend
                 console.log("name not found in cloud storage")
+                document.getElementById('name-section').innerText = 'Your Coins:, ' + '0' + '!';
+
                 return;
 
             }
-            document.getElementById('name-section').innerText = 'Hello, ' + nameInput + '!';
+            document.getElementById('name-section').innerText = 'Your Coins:, ' + totalCoins + '!';
             console.log("name found in cloud storage")
             return;
 
         });
 
 
-        function displayUserName() {
-            var name = document.getElementById('name-input').value;
-            window.Telegram.WebApp.CloudStorage.setItem("nameInput", name);
-            window.Telegram.WebApp.CloudStorage.getItem("nameInput", (err, nameInput) => {
-                if (err || !nameInput) {
+        function coinIncrement() {            
+            window.Telegram.WebApp.CloudStorage.getItem("totalCoins", (err, totalCoins) => {
+                if (err || !totalCoins) {
                     // in edge cases you can fetch tokens from your backend
                     console.log("name not found in cloud storage")
+                    window.Telegram.WebApp.CloudStorage.setItem("totalCoins", 0);
+
                     return;
                 }
-                document.getElementById('name-section').innerText = 'Hello, ' + nameInput + '!';
+                window.Telegram.WebApp.CloudStorage.setItem("totalCoins", totalCoins++);
+                document.getElementById('name-section').innerText = 'Your Coins:, ' + totalCoins + '!';
                 return;
             });
         }
-
+        
+        window.Telegram.WebApp.CloudStorage.setItem("totalCoins", totalCoins);
     </script>
 
     <!-- Eruda is console for mobile browsers -->
