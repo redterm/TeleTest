@@ -179,8 +179,7 @@
 
                     return;
                 }
-                window.Telegram.WebApp.CloudStorage.setItem("totalCoins", 0);
-                window.Telegram.WebApp.CloudStorage.setItem("totalCoins", int(totalCoins) ++);
+                window.Telegram.WebApp.CloudStorage.setItem("totalCoins", int(totalCoins) +1);
                 document.getElementById('name-section').innerText = 'Your Coins:, ' + totalCoins + '!';
                 return;
             });
