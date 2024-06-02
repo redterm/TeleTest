@@ -64,7 +64,7 @@
 
 <body>
     <main>
-        <p>Deploy 5</p>
+        <p>Deploy 6</p>
         <div align="center">
             <a href="https://ton.org/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
         </div>
@@ -174,8 +174,9 @@
         });
 
 
-        function coinIncrement() {            
-            totalCoins += 1;
+        function coinIncrement() {    
+            let newTotalCoins = parseInt(totalCoins, 10) + 1;
+            totalCoins = newTotalCoins
             document.getElementById('name-section').innerText = 'Your Coins: ' + totalCoins + '!';
         }
         
