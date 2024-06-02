@@ -38,7 +38,7 @@
             bottom: 0;
             border-width: 4px;
             border-style: solid;
-            border-image: linear-gradient(45deg, rgba(64, 224, 208, .5), rgba(173, 255, 47, .5)) 1;
+            border-image: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) 1;
         }
 
         #viewport-params-size,
@@ -46,7 +46,7 @@
             content: attr(text);
             position: absolute;
             display: inline-block;
-            background: var(--tg-theme-link-color, rgb(64, 224, 208));
+            background: var(--tg-theme-link-color, rgb(0, 0, 0));
             right: 4px;
             left: auto;
             font-size: 8px;
@@ -76,17 +76,17 @@
 
         <div align="center">
             <section id="coins-section">
-                Coins: 0
+                Coin: 0
             </section>
             <div onclick="coinIncrement();">
-                <img width="240" src="./assets/tapps.png" alt="logo of telegram web apps">
+                <img width="260" src="./assets/tapps.png" alt="logo of telegram web apps">
             </div>
         </div>
     </main>
 
     <div id="viewport"></div>
-    <!-- <div id="viewport-params-size"></div> -->
-    <!-- <div id="viewport-params-expand"></div> -->
+    <div id="viewport-params-size"></div>
+    <div id="viewport-params-expand"></div>
     <script src="./assets/telegram-web-app.js"></script>
     <script>
         // Init TWA
@@ -100,7 +100,11 @@
 
         function setViewportData() {
             var sizeEl = document.getElementById('viewport-params-size');
+            sizeEl.innerText = 'width: ' + window.innerWidth + ' x ' + 
+                'height: ' + Telegram.WebApp.viewportStableHeight;
+
             var expandEl = document.querySelector('#viewport-params-expand');
+            expandEl.innerText = 'Is Expanded: ' + (Telegram.WebApp.isExpanded ? 'true' : 'false');
         }
 
         Telegram.WebApp.setHeaderColor('secondary_bg_color');
