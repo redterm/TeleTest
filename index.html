@@ -9,7 +9,7 @@
         body {
             --bg-color: var(--tg-theme-bg-color);
             font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, Verdana, sans-serif;
-            background-color: var(--bg-color);
+            background-color: black;
             color: var(--tg-theme-text-color);
             margin: 48px 24px;
             padding: 0;
@@ -61,8 +61,12 @@
         }
         #coins-section {
             font-size: xx-large;
-            margin-bottom: 24px;
+            margin-bottom: 60px;
+            margin-top: 100px;
 
+        }
+        p, h1, section{
+            color:white;
         }
     </style>
 </head>
@@ -72,11 +76,11 @@
 
         <div align="center">
             <section id="coins-section">
-                <!-- Name will be displayed here -->
+                Coins: 0
             </section>
-            <button onclick="coinIncrement();">
-                <img width="96" src="./assets/tapps.png" alt="logo of telegram web apps">
-            </button>
+            <div onclick="coinIncrement();">
+                <img width="400" src="./assets/tapps.png" alt="logo of telegram web apps">
+            </div>
         </div>
     </main>
 
@@ -118,11 +122,11 @@
             if (err || !cloudTotalCoins) {
                 // in edge cases you can fetch tokens from your backend
                 console.log("totalCoins not found in cloud storage")
-                document.getElementById('coins-section').innerText = 'Your Coins:, ' + '0' + '!';
+                document.getElementById('coins-section').innerText = 'Coins:, ' + '0' ;
                 return;
             }
             totalCoins = cloudTotalCoins
-            document.getElementById('coins-section').innerText = 'Your Coins:, ' + cloudTotalCoins + '!';
+            document.getElementById('coins-section').innerText = 'Coins:, ' + cloudTotalCoins ;
             console.log("totalCoins  found in cloud storage")
             return;
 
@@ -132,7 +136,7 @@
         function coinIncrement() {    
             let newTotalCoins = parseInt(totalCoins, 10) + 1;
             totalCoins = newTotalCoins
-            document.getElementById('coins-section').innerText = 'Your Coins: ' + totalCoins + '!';
+            document.getElementById('coins-section').innerText = 'Coins: ' + totalCoins;
         }
         
         function updateCloudStorage() {
