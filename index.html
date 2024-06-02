@@ -125,7 +125,7 @@
                 document.getElementById('coins-section').innerText = 'Coins: ' + '0' ;
                 return;
             }
-            totalCoins = cloudTotalCoins
+            totalCoins = parseInt(cloudTotalCoins, 10);
             document.getElementById('coins-section').innerText = 'Coins: ' + cloudTotalCoins ;
             console.log("totalCoins  found in cloud storage")
             return;
@@ -134,7 +134,7 @@
 
 
         function coinIncrement() {    
-            let newTotalCoins = parseInt(totalCoins, 10) + 1;
+            let newTotalCoins = totalCoins + 1;
             totalCoins = newTotalCoins
             document.getElementById('coins-section').innerText = 'Coins: ' + totalCoins;
         }
