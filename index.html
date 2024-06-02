@@ -176,7 +176,6 @@
                     // in edge cases you can fetch tokens from your backend
                     console.log("name not found in cloud storage")
                     window.Telegram.WebApp.CloudStorage.setItem("totalCoins", 0);
-
                     return;
                 }
                 window.Telegram.WebApp.CloudStorage.setItem("totalCoins", int(totalCoins) +1);
