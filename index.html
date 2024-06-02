@@ -118,11 +118,11 @@
             if (err || !cloudTotalCoins) {
                 // in edge cases you can fetch tokens from your backend
                 console.log("totalCoins not found in cloud storage")
-                document.getElementById('coins-section').innerText = 'Coins:, ' + '0' ;
+                document.getElementById('coins-section').innerText = 'Coins: ' + '0' ;
                 return;
             }
             totalCoins = cloudTotalCoins
-            document.getElementById('coins-section').innerText = 'Coins:, ' + cloudTotalCoins ;
+            document.getElementById('coins-section').innerText = 'Coins: ' + cloudTotalCoins ;
             console.log("totalCoins  found in cloud storage")
             return;
 
