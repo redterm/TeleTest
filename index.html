@@ -64,7 +64,9 @@
 
 <body>
     <main>
-        <p>Deploy 6</p>
+        <p>
+            Deploy 7
+        </p>
         <div align="center">
             <a href="https://ton.org/"><img width="48" src="./assets/tapps.png" alt="logo of telegram web apps"></a>
         </div>
@@ -158,6 +160,7 @@
         });
 
         var totalCoins = 0;
+        window.Telegram.WebApp.CloudStorage.setItem("totalCoins", 0);
 
         window.Telegram.WebApp.CloudStorage.getItem("totalCoins", (err, cloudTotalCoins) => {
             if (err || !cloudTotalCoins) {
