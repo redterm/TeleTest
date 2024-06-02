@@ -175,10 +175,12 @@
                 if (err || !totalCoins) {
                     // in edge cases you can fetch tokens from your backend
                     console.log("name not found in cloud storage")
-                    window.Telegram.WebApp.CloudStorage.setItem("totalCoins", 0);
+                    window.Telegram.WebApp.CloudStorage.setItem("totalCoins", '0');
                     return;
                 }
-                window.Telegram.WebApp.CloudStorage.setItem("totalCoins", str(int(totalCoins) +1));
+                let newTotalCoins = parseInt(totalCoins, 10) + 1;
+
+                window.Telegram.WebApp.CloudStorage.setItem("totalCoins", newTotalCoins.toString());
                 document.getElementById('name-section').innerText = 'Your Coins:, ' + totalCoins + '!';
                 return;
             });
